@@ -1,7 +1,9 @@
 #ifndef PALETA_H
 #define PALETA_H
 #include <string>
-class Pixel {
+
+namespace pc{
+class Cor {
     public:
     unsigned char R;
     unsigned char G;
@@ -11,14 +13,14 @@ class Pixel {
 class Cores {
     private:
     int quantidade;
-    Pixel cores[100]; 
+    Cor cores[100];   
     double valores[100];
 
     public:
-    Cores(int qtd, const Pixel c[], const double v[]);
+    Cores(int qtd, const Cor c[], const double v[]);
     bool carregarDeArquivos(const std::string& caminho);
-    Pixel obterCor(double valor) const;
+    Cor obterCor(double valor) const;
     bool estaOrdenados() const;
 };
-
+}
 #endif
