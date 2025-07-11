@@ -19,21 +19,16 @@ Cores::Cores(int qtd, const Cor c[], const double v[]){ //vai receber a quantida
 // vai receber um valor real e retornar a cor que corresponde a esse valor
 // a pessoa pode dar outros valores, mas vai atribuir a ele um especifico dentro da paleta
 Cor Cores::obterCor(double valor) const {
-    if (quantidade == 0) return Cor{0, 0, 0}; // Retorna preto se não houver cores
+    if (quantidade == 0) return Cor{0, 0, 0}; // ou uma cor padrão
 
-    // Se o valor for menor que o primeiro valor, retorna a primeira cor (piso mínimo)
-    if (valor < valores[0]) return cores[0];
-
-    // Percorre os valores para encontrar o piso
-    for (int i = quantidade - 1; i >= 0; --i) {
-        if (valor >= valores[i]) {
-            return cores[i]; // Retorna a cor do maior valor <= 'valor' (piso)
+    for (int i = 0; i < quantidade - 1; ++i) { // vai percorrer os valores ja guardados anteriormente 
+        if (valor >= valores[i] && valor < valores[i + 1]) {// vai testar se ele esta em algum intervalo específico
+            return cores[i];// vai retornar a cor com esse indice 
         }
     }
-
-    // Nunca deve chegar aqui, mas por segurança retorna a primeira cor
-    return cores[0];
+    return cores[quantidade - 1]; // Retorna a última cor se o valor for maior
 }
+
 // só pra saber se a pessoa colocou certo
 bool Cores::estaOrdenados() const {// o const é pra nada da classe ser mudado
     for (int i = 0; i < quantidade - 1; ++i) {// o -1 é pra nao acessar coisa de fora do array
