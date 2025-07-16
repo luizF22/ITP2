@@ -1,11 +1,11 @@
-#include "paleta.h"
-#include <iostream>
-#include <iomanip> // std::setprecision
+#include "paleta.h" // inclusão do arquivo
+#include <iostream> // pra usar std
+#include <iomanip> // std::setprecision, para ferramentas de formatação de saída
 
 int main() {
-    pc::Cores paleta(0, nullptr, nullptr);  // inicialização vazia
+    pc::Cores paleta(0, nullptr, nullptr);  // inicialização vazia com ponteiros nulos para representar arrays que vão vir depois
 
-    if (!paleta.carregarDeArquivos("paleta.txt")) {
+    if (!paleta.carregarDeArquivos("paleta.txt")) {// lê o arquivo e cria os arrays internamente
         std::cerr << "Erro ao carregar o arquivo da paleta.\n";
         return 1;
     }
@@ -28,9 +28,9 @@ int main() {
     0.925926, 0.962963, 1.000000
 };
 
-    for (double v : valoresTeste) {
-        pc::Cor cor = paleta.obterCor(v);
-        std::cout << std::fixed << std::setprecision(2);
+    for (double v : valoresTeste) { // atribui cada valor dos ValoresTeste para o v
+        pc::Cor cor = paleta.obterCor(v); //colocar a classe Cor, que tem o RGB, como a função obtercor sendo exercida sobre a paleta
+        std::cout << std::fixed << std::setprecision(2); // força os números decimais a saírem com 2 casas decimais
         std::cout << "Valor " << v << " => RGB("
                   << static_cast<int>(cor.R) << ", "
                   << static_cast<int>(cor.G) << ", "
