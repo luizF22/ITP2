@@ -8,7 +8,7 @@
 int main() {
     // --- 1. Configurações Iniciais ---
     const int N_MAPA = 8; // Gera um mapa de 2^8 + 1 = 257x257. Mude para N=9 para 513x513.
-    const float RUGOSIDADE = 0.65f; // Um bom valor para terrenos. Experimente mudar!
+    const float RUGOSIDADE = 0.5f; // Um bom valor para terrenos. Experimente mudar!
     const std::string NOME_ARQUIVO_IMAGEM = "mapa_de_altitudes.ppm";
 
     // --- 2. Geração do Mapa de Altitudes ---
@@ -41,13 +41,13 @@ int main() {
     const int QTD_CORES = 6;
     
     pc::Cor cores_paleta[QTD_CORES] = {
-        {0, 0, 128},      // 1. Azul escuro (águas profundas)
-        {65, 105, 225},   // 2. Azul royal (águas rasas)
-        {34, 139, 34},    // 3. Verde (planícies)
-        {139, 69, 19},    // 4. Marrom (montanhas)
-        {128, 128, 128},  // 5. Cinza (rochas altas)
-        {255, 255, 255}   // 6. Branco (picos nevados)
-    };
+    {30, 60, 150},     // Azul escuro (menos saturado)
+    {70, 130, 200},    // Azul médio (água)
+    {100, 160, 80},    // Verde (vegetação)
+    {120, 100, 60},    // Marrom (montanhas)
+    {180, 180, 180},   // Cinza claro (rochas)
+    {240, 240, 240}    // Branco (neve)
+};
 
     // Os valores devem estar em ordem crescente, mapeando de 0.0 a 1.0.
     double valores_paleta[QTD_CORES] = {
