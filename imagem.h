@@ -1,12 +1,13 @@
 #ifndef IMAGEM_H
 #define IMAGEM_H
 #include "paleta.h"
-namespace img {
+namespace img { // criando pra usar no .cpp
     class Imagem {
 private:
         int largura;
         int altura;
-        pc::Cor* pixels; //pra ser alocado dinamicamente o array de pixels
+        pc::Cor* pixels; //ponteiro para o primeiro elemento de um array dinamico, que vai ser repleto de elementos do tipo Cor
+        //pra ser alocado dinamicamente o array de pixels
 public:
 /**
  * @brief construtor da classe Imagem
