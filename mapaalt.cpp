@@ -2,6 +2,67 @@
 
 using namespace mapa;
 
+img::Imagem MDA::gerarImagem(const pc::Cores& paleta, float fatorSombra) const {
+    // --- ETAPA DE NORMALIZAÇÃO (INÍCIO) ---
+    // 1. Primeiro, precisamos encontrar a altitude mínima e máxima no mapa.
+    float min_alt = matriz[0][0];
+    float max_alt = matriz[0][0];
+
+    for (int y = 0; y < dimensao; ++y) {
+        for (int x = 0; x < dimensao; ++x) {
+            if (matriz[y][x] < min_alt) {
+                min_alt = matriz[y][x];
+            }
+            if (matriz[y][x] > max_alt) {
+                max_alt = matriz[y][x];
+            }
+        }
+    }
+    
+    float intervalo_alt = max_alt - min_alt;
+    // Evita divisão por zero caso o mapa seja completamente plano
+    if (intervalo_alt == 0) {
+        intervalo_alt = 1.0f;
+    }
+    // --- ETAPA DE NORMALIZAÇÃO (FIM) ---
+
+
+    // Cria um objeto Imagem com as mesmas dimensões do mapa.
+    img::Imagem imagem(dimensao, dimensao);
+
+    // Percorre cada ponto (pixel) do mapa.
+    for (int y = 0; y < dimensao; ++y) {
+        for (int x = 0; x < dimensao; ++x) {
+            
+            float altitude_atual = matriz[y][x];
+
+            // 2. Normaliza a altitude atual para o intervalo [0.0, 1.0].
+            float altitude_normalizada = (altitude_atual - min_alt) / intervalo_alt;
+
+            // 3. Obtém a cor base usando o valor normalizado.
+            pc::Cor cor_pixel = paleta.obterCor(altitude_normalizada);
+
+            // 4. Aplica o efeito de sombreamento.
+            if (y > 0 && x > 0) {
+                float altitude_vizinho = matriz[y - 1][x - 1];
+
+                if (altitude_atual < altitude_vizinho) {
+                    cor_pixel.R = static_cast<unsigned char>(cor_pixel.R * fatorSombra);
+                    cor_pixel.G = static_cast<unsigned char>(cor_pixel.G * fatorSombra);
+                    cor_pixel.B = static_cast<unsigned char>(cor_pixel.B * fatorSombra);
+                }
+            }
+
+            // 5. Define a cor do pixel (original ou sombreada) na imagem.
+            imagem.DefPix(x, y, cor_pixel);
+        }
+    }
+
+    // Retorna o objeto Imagem completo.
+    return imagem;
+}
+
+
 // --- Construtor e Destrutor ---
 
 MDA::MDA(int n) {

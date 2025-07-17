@@ -8,6 +8,12 @@ private:
         int altura;
         pc::Cor* pixels; //pra ser alocado dinamicamente o array de pixels
 public:
+/**
+ * @brief construtor da classe Imagem
+ * @param largura
+ * 
+ * 
+ */
         Imagem(int largura, int altura); //cria img com alt e larg especificadas
         ~Imagem(); //destrutor para liberar a memoria
         void DefPix(int x, int y, pc::Cor cor); //def a cor de um pixel em determinadas coordenadas

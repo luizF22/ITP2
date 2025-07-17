@@ -8,7 +8,7 @@
 int main() {
     // --- 1. Configurações Iniciais ---
     const int N_MAPA = 8; // Gera um mapa de 2^8 + 1 = 257x257. Mude para N=9 para 513x513.
-    const float RUGOSIDADE = 0.5f; // Um bom valor para terrenos. Experimente mudar!
+    const float RUGOSIDADE = 0.65f; // Um bom valor para terrenos. Experimente mudar!
     const std::string NOME_ARQUIVO_IMAGEM = "mapa_de_altitudes.ppm";
 
     // --- 2. Geração do Mapa de Altitudes ---

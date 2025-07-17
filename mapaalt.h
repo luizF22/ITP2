@@ -6,6 +6,8 @@
 #include <cmath>
 #include <ctime>
 #include <cstdlib>
+#include "paleta.h"
+#include "imagem.h"
 
 namespace mapa {
 class MDA {
@@ -25,6 +27,7 @@ public:
         int getDim();//consultar as linhas e colunas (dimensões da matriz)
         void salvar(const std::string& nomearquivo);//salvar o mapa em um arquivo
         void ler(const std::string& nomearquivo);//carregar o mapa de um arquivo
+        img::Imagem gerarImagem(const pc::Cores& paleta, float fatorsombra) const;
 };
 
 }
