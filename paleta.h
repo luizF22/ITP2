@@ -9,7 +9,7 @@ struct Cor {//facil acesso para uso posterior (como um cor.R = 255), n há neces
     unsigned char B;
 };
 
-class Cores {
+class Cores {   
     private://garantir que em outros códigos esses atributos n sejam alterados de forma alguma
     int quantidade;
     Cor cores[100];   
