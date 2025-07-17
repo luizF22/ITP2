@@ -2,9 +2,9 @@
 #define PALETA_H
 #include <string>
 
-namespace pc{//evitar conflitos com nomes de outros arquivos
-struct Cor {//facil acesso para uso posterior (como um cor.R = 255), n há necessidade de ser classe
-    unsigned char R;
+namespace pc{//evitar conflitos com nomes de outros arquivos, indicando exatamente de onde é cada coisa
+struct Cor {
+    unsigned char R;// unsigned char para variar de 0-255
     unsigned char G;
     unsigned char B;
 };
@@ -17,7 +17,7 @@ class Cores {
 
         public://vão ser chamados futuramente em outros códigos
  /**
- * @brief Construtor que inicializa o vetor de cores e valores internos com base nos parâmetros fornecidos.
+ * @brief Construtor que inicializa o array interno de cores e valores internos com base nos parâmetros fornecidos.
  * @param qtd Número de cores a ser carregado (máximo 100).
  * @param c Array de objetos Cor representando as cores.
  * @param v Array de valores reais associados a cada cor.
@@ -26,7 +26,7 @@ class Cores {
     
  /**
  * @brief Carrega dados de cores e seus valores a partir de um arquivo de texto.
- * @param caminho Caminho para o arquivo a ser lido.
+ * @param caminho recebe o "Caminho", que é o nome do arquivo, para o arquivo a ser lido.
  * @return true se o carregamento for bem-sucedido, false em caso de erro de leitura ou formato inválido.
  */
         bool carregarDeArquivos(const std::string& caminho);//carregar as cores de um arquivo externo
